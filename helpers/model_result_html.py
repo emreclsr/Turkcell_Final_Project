@@ -3,7 +3,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
-def model_results_to_html():
+def model_results_to_html(value):
     df = pd.read_csv("tweets.csv")
     df = df.iloc[::-1]
     df.reset_index(inplace=True, drop=True)
@@ -11,7 +11,7 @@ def model_results_to_html():
     df2["prediction"][df2["prediction"] == 0] = "Olumsuz"
     df2["prediction"][df2["prediction"] == 1] = "Olumlu"
 
-    # df2.to_html("templates/tweets.html", render_links=True, justify="left")
+    # df2[:int(value)].to_html("templates/tweets.html", render_links=True, justify="left")
 
     boostrap_link = '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">'
     # render dataframe as html

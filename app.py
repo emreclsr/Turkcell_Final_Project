@@ -32,13 +32,13 @@ def hello():
 def submit():
     # HTML -> .py
     if request.method == "POST":
-        # value = request.form["value"]
-        # print(value)
+        value = request.form["value"]
+        print(value)
         model_main(normalizer, revisedDict, tfidf_load, svc_load)
-        model_results_to_html()
+        model_results_to_html(value)
     # .py -> HTML
     return render_template("tweets.html")
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5000, debug=True)
