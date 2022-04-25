@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,7 +10,8 @@
 <body>
     <h4>Tahminleri getirmek için butona tıklayın</h4>
     <form action="/table" method="POST">
-        <button type="submit">Getir</button>
+        <input type="text" name="value" placeholder="Tweet sayısını giriniz.">
+        <input type="submit">
     </form>
 </body>
 </html>

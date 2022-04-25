@@ -1,6 +1,24 @@
 from flask import Flask, render_template, request
 from helpers.model_result_html import *
+from model.model_main import *
+import warnings
+import pickle
+from zemberek import (TurkishSentenceNormalizer, TurkishMorphology)
+warnings.filterwarnings("ignore")
 
+print("Preloading models...", end="\r", flush=True)
+
+morphology = TurkishMorphology.create_with_defaults()
+normalizer = TurkishSentenceNormalizer(morphology)
+
+with open("model/revisedDict.pkl", 'rb') as f:
+    revisedDict = pickle.load(f)
+
+tfidf_load = pickle.load(open("model/tfidf_fit.pkl", "rb"))
+svc_load = pickle.load(open("model/svm_model.pkl", "rb"))
+
+print("Preloading done...", end="\r", flush=True)
+#-------------------------------------------------------
 
 app = Flask(__name__)
 
@@ -14,7 +32,9 @@ def hello():
 def submit():
     # HTML -> .py
     if request.method == "POST":
-        model_results_to_html()
+        value = request.form["value"]
+        model_main(normalizer, revisedDict, tfidf_load, svc_load)
+        model_results_to_html(value)
     # .py -> HTML
     return render_template("tweets.html")
 
