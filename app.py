@@ -17,7 +17,7 @@ with open("model/revisedDict.pkl", 'rb') as f:
 tfidf_load = pickle.load(open("model/tfidf_fit.pkl", "rb"))
 svc_load = pickle.load(open("model/svm_model.pkl", "rb"))
 
-print("Preloading done...", end="\r", flush=True)
+print("Preloading done...")
 #-------------------------------------------------------
 
 app = Flask(__name__)
@@ -32,13 +32,12 @@ def hello():
 def submit():
     # HTML -> .py
     if request.method == "POST":
-        value = request.form["value"]
+        # value = request.form["value"]
+        # print(value)
         model_main(normalizer, revisedDict, tfidf_load, svc_load)
-        model_results_to_html(value)
+        model_results_to_html()
     # .py -> HTML
     return render_template("tweets.html")
-
-
 
 
 if __name__ == "__main__":
