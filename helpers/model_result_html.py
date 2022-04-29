@@ -15,7 +15,7 @@ def model_results_to_html(value):
 
     boostrap_link = '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">'
     # render dataframe as html
-    html = df2.to_html(render_links=True, justify="left")
+    html = df2[:int(value)].to_html(render_links=True, justify="left")
     html = html.replace('class="dataframe"', 'class="table table-striped table-hover"')
 
     text_file = open("templates/tweets.html", "w", encoding="utf-8")
